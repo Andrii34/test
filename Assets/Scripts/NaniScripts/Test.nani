@@ -1,0 +1,59 @@
+
+
+@showUI QuestLog
+@back gameBG
+
+
+@bgm startAudio
+
+@set QuestLogText="Нужно ввести свое имя"
+Введи свое имя
+
+@input name
+@stop
+@set QuestLogText="Идти на Неоновую улицу "
+Привет  {name}
+Иди на Неоновую улицу там получишь первое задание
+@set gameProgress=0
+@goto .Map
+
+
+
+# Map
+
+@back mapBG
+@bgm mapAudio
+@hidePrinter 
+@choice  button:MapBattons/Map1 pos:-625, handler:ButtonArea goto:.location1
+
+@choice  button:MapBattons/Map2 pos:-140,230 handler:ButtonArea goto:.location2
+
+@choice  button:MapBattons/Map3 pos:625 handler:ButtonArea goto:.location3
+
+@stop
+
+# location1
+@back StreetsOfNeonCity
+@if gameProgress=0
+@char Katya.Scared
+
+location1
+@char Katya.sad
+@goto .Map
+
+# location2
+@back Factory
+location2
+@goto .Map
+
+# location3
+@back Stock
+location3
+@goto .Map
+
+#QuestLog
+
+@back QuestLog
+afafff
+
+@return
